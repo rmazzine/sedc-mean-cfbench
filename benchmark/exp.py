@@ -75,6 +75,12 @@ for benchmark_data in benchmark_generator:
                       default_values[f_idx] for f_idx, f in enumerate(factual_array)]
             else:
                 cf = factual_row.to_list()
+
+            if factual_array != cf:
+                print('CF candidate generated')
+            else:
+                print('No CF generated')
+
         except Exception as e:
             print('Error generating CF')
             print(e)
@@ -96,6 +102,6 @@ for benchmark_data in benchmark_generator:
         # If CF generation time exceeded the limit
         evaluator(
             cf_out=factual_row.to_list(),
-            algorithm_name='dice',
+            algorithm_name='sedc',
             cf_generation_time=np.NaN,
             save_results=True)
